@@ -1,0 +1,17 @@
+# type(scope): short summary
+# types: feat, fix, refactor, docs, test, chore, build
+# examples:
+# feat(expense): создать эндпоинт добавления расхода
+# docs(readme): описать функции MVP
+# fix(balance): пофиксить обработку расхода с нулевой суммой
+
+type(scope):
+
+# why:
+# -
+
+# what:
+# -
+
+# notes:
+# -
