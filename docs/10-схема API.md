@@ -259,8 +259,7 @@
   "items": [
     {
       "id": 101,
-      "name": "Alexey",
-      "isBound": true
+      "name": "Alexey"
     },
     {
       "id": 102,
