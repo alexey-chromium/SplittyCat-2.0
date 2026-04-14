@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches-ignore:
+      - "main"
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+
+    steps:
+      - name: Скачать код
+        uses: actions/checkout@v6
+
+      - name: Установить JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Установить Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Дать права gradlew
+        run: chmod +x ./gradlew
+
+      - name: Собрать проект
+        run: ./gradlew assemble
+
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: build
+    permissions:
+      contents: read
+
+    steps:
+      - name: Скачать код
+        uses: actions/checkout@v6
+
+      - name: Установить JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Установить Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Дать права gradlew
+        run: chmod +x ./gradlew
+
+      - name: Запустить тесты
+        run: ./gradlew test
